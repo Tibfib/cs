@@ -1,4 +1,7 @@
-# `cs` User Guide
+# `@tibfib/cs` User Guide
+
+[![npm version](https://badge.fury.io/js/%40tibfib%2Fcs.svg)](https://badge.fury.io/js/%40tibfib%2Fcs)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
 `cs` is a lightweight (~.3kb) CSS utility function, similar to [Classnames](https://github.com/JedWatson/classnames) but with a very important distinction: **CS allows you to mix custom styles with class names**. This is great for working with utility classes (e.g. [tailwindcss](https://tailwindcss.com), [basscss](https://basscss.com/)) but still allowing the flexibility of custom styles.
 
