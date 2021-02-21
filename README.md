@@ -1,9 +1,9 @@
-# `@tibfib/cs` User Guide
+# `generate-cns` User Guide
 
 [![npm version](https://badge.fury.io/js/%40tibfib%2Fcs.svg)](https://badge.fury.io/js/%40tibfib%2Fcs)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-`cs` is a lightweight (~.3kb) CSS utility function, similar to [Classnames](https://github.com/JedWatson/classnames) but with a very important distinction: **CS allows you to mix custom styles with class names**. This is great for working with utility classes (e.g. [tailwindcss](https://tailwindcss.com), [basscss](https://basscss.com/)) but still allowing the flexibility of custom styles.
+`generate-cns` is a lightweight (~.3kb) generator of a CSS utility function similar to [Classnames](https://github.com/JedWatson/classnames) but with a very important distinction: **`cns` allows you to mix custom styles with class names**. This is great for working with utility classes (e.g. [tailwindcss](https://tailwindcss.com), [basscss](https://basscss.com/)) but still allowing the flexibility of custom styles.
 
 For these style declarations, **bring your own CSS-in-JS lib**: [emotion](https://emotion.sh/docs/@emotion/css), [otion](https://github.com/kripod/otion), etc..
 
@@ -30,17 +30,17 @@ function Component() {
 
 ## The Solution
 
-Instead, use `cs` to combine both classNames and style properties, like so:
+Instead, use `cns` to combine both classNames and style properties, like so:
 
 ```jsx
-// using `cs`
+// using `cns`
 
 function Component() {
 	const [isEnabled, setIsEnabled] = React.useState();
 
 	return (
 		<div
-			className={cs(
+			className={cns(
 				isEnabled ? ['bold', { color: 'green' }] : { opacity: 0.7 }
 			)}
 		>
@@ -53,32 +53,32 @@ function Component() {
 ## Installation
 
 ```bash
-npm install @tibfib/cs
+npm install generate-cns
 # or
-yarn add @tibfib/cs
+yarn add generate-cns
 ```
 
 ## Usage
 
-**IMPORTANT: `cs` exports a _generator_ for you to create your _own_ `cs` function**
+**IMPORTANT: `generate-cns` exports a _generator_ for you to create your _own_ `cns` function**
 
 ```jsx
 // in some sort of utils.js file
-import { generate } from '@tibfib/cs';
+import { generate } from 'generate-cns';
 import { css } from '@emotion/css';
-export const cs = generate(css);
+export const cns = generate(css);
 
 // in usage
-import { cs } from '../utils';
+import { cns } from '../utils';
 
 function Component() {
 	return (
-		<div classname={cs('bold', { color: 'yellow' })}>Bold Yellow Text</div>
+		<div classname={cns('bold', { color: 'yellow' })}>Bold Yellow Text</div>
 	);
 }
 ```
 
-For the `cs` function, you can pass in:
+For the `cns` function, you can pass in:
 
 - `string`s, which will be added as classes.
 - `falsy` values, which will be ignored: `null`, `undefined`, `false` (this is to help with conditional logic)
@@ -89,13 +89,13 @@ For the `cs` function, you can pass in:
 
 ```jsx
 return (
-	<div className={cs('mb0', isEnabled ? 'bold' : { opacity: 0.5 })}>...</div>
+	<div className={cns('mb0', isEnabled ? 'bold' : { opacity: 0.5 })}>...</div>
 );
 ```
 
 ```jsx
 return (
-	<div className={cs(isEnabled ? ['underline', { opacity: 0.1 }] : null)}>
+	<div className={cns(isEnabled ? ['underline', { opacity: 0.1 }] : null)}>
 		...
 	</div>
 );
@@ -105,9 +105,9 @@ return (
 
 ### How this is Different from `classnames`?
 
-`cs` allows you to use custom css in your classNames array. With `classnames`, when you use an object, it will apply the keys of the object as classes based on the truthiness of the value.
+`cns` allows you to use custom css in your classNames array. With `classnames`, when you use an object, it will apply the keys of the object as classes based on the truthiness of the value.
 
-`cs` allows you to nest arrays of values, making it easy to conditionally apply both css classNames and custom styles together.
+`cns` allows you to nest arrays of values, making it easy to conditionally apply both css classNames and custom styles together.
 
 ### What `css` functions do you recommend?
 

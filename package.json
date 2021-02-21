@@ -32,7 +32,7 @@
 		"trailingComma": "es5",
 		"useTabs": true
 	},
-	"name": "@tibfib/cs",
+	"name": "generate-cns",
 	"author": "Will Honey",
 	"module": "dist/cs.esm.js",
 	"size-limit": [
