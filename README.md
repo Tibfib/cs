@@ -5,7 +5,7 @@
 
 `generate-cns` is a lightweight (~.3kb) generator of a CSS utility function similar to [Classnames](https://github.com/JedWatson/classnames) but with a very important distinction: **`cns` allows you to mix custom styles with class names**. This is great for working with utility classes (e.g. [tailwindcss](https://tailwindcss.com), [basscss](https://basscss.com/)) but still allowing the flexibility of custom styles.
 
-For these style declarations, **bring your own CSS-in-JS lib**: [emotion](https://emotion.sh/docs/@emotion/css), [otion](https://github.com/kripod/otion), etc..
+For these style declarations, **bring your own CSS-in-JS lib**: [emotion](https://emotion.sh/docs/@emotion/css), [@stitches/react](https://stitches.dev), [otion](https://github.com/kripod/otion), etc..
 
 ## The Problem
 
@@ -116,15 +116,26 @@ return (
 ```jsx
 import { css } from 'otion';
 import { generate } from '@tibfib/cs';
-export const cs = generate(css);
+export const cns = generate(css);
 ```
 
-2. [@emotion/css](https://emotion.sh/docs/@emotion/css)
+2. [@stitches/react](https://stitches.dev)
+
+```jsx
+import { createStyled } from '@stitches/react';
+import { generate } from '@tibfib/cs';
+
+const { css } = createStyled({ breakpoints: {} }); // including whatever config you want
+
+export const cns = generate(css);
+```
+
+3. [@emotion/css](https://emotion.sh/docs/@emotion/css)
 
 ```jsx
 import { css } from '@emotion/css';
 import { generate } from '@tibfib/cs';
-export const cs = generate(css);
+export const cns = generate(css);
 ```
 
 ### Can you use this outside of react?
@@ -137,4 +148,4 @@ For older browsers, you will need to polyfill `Array.prototype.flat`. (see [`cor
 
 ### What about `styled-components` and their tagged template literal?
 
-Great question. Investigating support...
+This is not supported. `cns` detects objects and forwards them along to the `css` function to get a string.
