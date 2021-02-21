@@ -1,6 +1,6 @@
 # `generate-cns` User Guide
 
-[![npm version](https://badge.fury.io/js/%40tibfib%2Fcs.svg)](https://badge.fury.io/js/%40tibfib%2Fcs)
+[![npm version](https://badge.fury.io/js/generate-cns.svg)](https://badge.fury.io/js/generate-cns)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
 `generate-cns` is a lightweight (~.3kb) generator of a CSS utility function similar to [Classnames](https://github.com/JedWatson/classnames) but with a very important distinction: **`cns` allows you to mix custom styles with class names**. This is great for working with utility classes (e.g. [tailwindcss](https://tailwindcss.com), [basscss](https://basscss.com/)) but still allowing the flexibility of custom styles.
@@ -13,18 +13,18 @@ Even with CSS utility classes, there is always a need to reach for custom style 
 
 ```jsx
 function Component() {
-	const [isEnabled, setIsEnabled] = React.useState();
+    const [isEnabled, setIsEnabled] = React.useState();
 
-	return (
-		<div
-			className={isEnabled ? 'bold' : ''}
-			style={isEnabled ? { color: 'green' } : { opacity: 0.7 }}
-			/* I am now defining the styles related to the `isEnabled` flag in multiple spots. */
-			/* What happens if I want to add a single `style` property that always applies? Messy. */
-		>
-			Is Enabled?
-		</div>
-	);
+    return (
+        <div
+            className={isEnabled ? 'bold' : ''}
+            style={isEnabled ? { color: 'green' } : { opacity: 0.7 }}
+            /* I am now defining the styles related to the `isEnabled` flag in multiple spots. */
+            /* What happens if I want to add a single `style` property that always applies? Messy. */
+        >
+            Is Enabled?
+        </div>
+    );
 }
 ```
 
@@ -36,17 +36,17 @@ Instead, use `cns` to combine both classNames and style properties, like so:
 // using `cns`
 
 function Component() {
-	const [isEnabled, setIsEnabled] = React.useState();
+    const [isEnabled, setIsEnabled] = React.useState();
 
-	return (
-		<div
-			className={cns(
-				isEnabled ? ['bold', { color: 'green' }] : { opacity: 0.7 }
-			)}
-		>
-			Is Enabled?
-		</div>
-	);
+    return (
+        <div
+            className={cns(
+                isEnabled ? ['bold', { color: 'green' }] : { opacity: 0.7 }
+            )}
+        >
+            Is Enabled?
+        </div>
+    );
 }
 ```
 
@@ -72,32 +72,32 @@ export const cns = generate(css);
 import { cns } from '../utils';
 
 function Component() {
-	return (
-		<div classname={cns('bold', { color: 'yellow' })}>Bold Yellow Text</div>
-	);
+    return (
+        <div classname={cns('bold', { color: 'yellow' })}>Bold Yellow Text</div>
+    );
 }
 ```
 
 For the `cns` function, you can pass in:
 
-- `string`s, which will be added as classes.
-- `falsy` values, which will be ignored: `null`, `undefined`, `false` (this is to help with conditional logic)
-- an `object` which will be forwarded along to the `css` function you pass in to the generator
-- nested arrays of any of the above.
+-   `string`s, which will be added as classes.
+-   `falsy` values, which will be ignored: `null`, `undefined`, `false` (this is to help with conditional logic)
+-   an `object` which will be forwarded along to the `css` function you pass in to the generator
+-   nested arrays of any of the above.
 
 ### Examples
 
 ```jsx
 return (
-	<div className={cns('mb0', isEnabled ? 'bold' : { opacity: 0.5 })}>...</div>
+    <div className={cns('mb0', isEnabled ? 'bold' : { opacity: 0.5 })}>...</div>
 );
 ```
 
 ```jsx
 return (
-	<div className={cns(isEnabled ? ['underline', { opacity: 0.1 }] : null)}>
-		...
-	</div>
+    <div className={cns(isEnabled ? ['underline', { opacity: 0.1 }] : null)}>
+        ...
+    </div>
 );
 ```
 

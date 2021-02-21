@@ -30,7 +30,8 @@
 		"semi": true,
 		"singleQuote": true,
 		"trailingComma": "es5",
-		"useTabs": true
+		"useTabs": false,
+		"tabWidth": 4
 	},
 	"name": "generate-cns",
 	"author": "Will Honey",
