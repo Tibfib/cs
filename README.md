@@ -115,7 +115,7 @@ return (
 
 ```jsx
 import { css } from 'otion';
-import { generate } from '@tibfib/cs';
+import { generate } from 'generate-cns';
 export const cns = generate(css);
 ```
 
@@ -123,7 +123,7 @@ export const cns = generate(css);
 
 ```jsx
 import { createStyled } from '@stitches/react';
-import { generate } from '@tibfib/cs';
+import { generate } from 'generate-cns';
 
 const { css } = createStyled({ breakpoints: {} }); // including whatever config you want
 
@@ -134,7 +134,7 @@ export const cns = generate(css);
 
 ```jsx
 import { css } from '@emotion/css';
-import { generate } from '@tibfib/cs';
+import { generate } from 'generate-cns';
 export const cns = generate(css);
 ```
 
